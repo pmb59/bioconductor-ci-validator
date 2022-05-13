@@ -3,9 +3,12 @@ jobs:
   build:
     working_directory: /docker-bioconductor
     docker:
-      - image: bioconductor/bioconductor_docker:RELEASE_3_15
+      - image: bioconductor/bioconductor_docker:devel
     steps:
       - checkout
       - run:
           name: check installation
           command: R --version
+      - run:
+          name: build and check ExpressionAtlas
+          command: bash build_ExpressionAtlas.sh
