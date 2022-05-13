@@ -1,2 +1,2 @@
-# docker-bioconductor
-Dockeer container access to Bioconductor 
+# Docker container access to Bioconductor 
+
