@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    working_directory: /docker-bioconductor
+    docker:
+      - image: bioconductor/bioconductor_docker:RELEASE_3_15
+    steps:
+      - checkout
+      - run:
+          name: check installation
+          command: R --version
