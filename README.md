@@ -1,4 +1,4 @@
-# Docker container access to Bioconductor 
+# Bioconductor package CI validator
 
-Build and check with lastest Bioc version a list of packages cloned from GitHub.
+Build and check with Docker lastest Bioc version a list of packages cloned from GitHub.
 
