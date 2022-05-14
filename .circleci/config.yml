@@ -11,4 +11,5 @@ jobs:
           command: R --version
       - run:
           name: build and check Bioconductor packages
+          no_output_timeout: 30m
           command: bash build.sh
