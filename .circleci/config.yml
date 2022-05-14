@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /docker-bioconductor
+    working_directory: /bioconductor-ci-validator
     docker:
       - image: bioconductor/bioconductor_docker:devel
     steps:
@@ -11,5 +11,5 @@ jobs:
           command: R --version
       - run:
           name: build and check Bioconductor packages
-          no_output_timeout: 30m
+          no_output_timeout: 20m
           command: bash build.sh
