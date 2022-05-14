@@ -30,4 +30,8 @@ for p in $pkg_to_build ; do
     echo $pkg" check OK.----------"
   fi
   
+  # include other checks, size, tarball, etc...
+  
+  # change name to repo docker-bioconductor-validator
+  
  done
