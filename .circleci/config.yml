@@ -11,7 +11,7 @@ jobs:
           command: R --version
       - run:
           name: Install texlive
-          command: 'apt update && apt install texlive texlive-xetex texlive-fonts-extra texlive-latex-extra texlive-plain-extra'
+          command: 'apt update && apt install texlive texlive-xetex texlive-fonts-extra texlive-latex-extra'
       - run:
           name: build and check Bioconductor packages
           no_output_timeout: 20m
