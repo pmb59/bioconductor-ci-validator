@@ -19,7 +19,7 @@ for p in $pkg_to_build ; do
     echo "ERROR: Failed R CMD build "$pkg
     exit 1
   else
-    echo $pkg" build OK.----------"
+    echo $pkg"---------- build OK.----------"
   fi
   
   # if bioc tagged, rm prefix
@@ -31,7 +31,7 @@ for p in $pkg_to_build ; do
     echo "ERROR: R CMD check "$pkg
     exit 1
   else
-    echo $pkg" check OK.----------"
+    echo $pkg"---------- check OK.----------"
   fi
   
   # include other checks, size, tarball, etc...
