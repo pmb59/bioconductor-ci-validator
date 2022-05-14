@@ -22,7 +22,7 @@ for p in $pkg_to_build ; do
     echo $pkg" build OK.----------"
   fi
 
-  R CMD check ${pkg}_*.tar.gz --no-manual
+  R CMD check *${pkg}_*.tar.gz --no-manual
   if [ $? -ne 0 ]; then
     echo "ERROR: R CMD check "$pkg
     exit 1
