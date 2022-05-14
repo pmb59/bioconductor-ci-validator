@@ -12,14 +12,14 @@ for p in $pkg_to_build ; do
   
   #echo $pkg
 
-  Rscript --vanilla install_dependencies.r $pkg 2>&1 >/dev/null
+  Rscript --vanilla install_dependencies.r $pkg  # 2>&1 >/dev/null
 
   R CMD build $pkg
   if [ $? -ne 0 ]; then
-    echo "ERROR: Failed R CMD build "$pkg
+    echo $pkg"  ERROR: Failed R CMD build." >> summary.txt
     exit 1
   else
-    echo $pkg"---------- build OK.----------"
+    echo $pkg"  build OK." >> summary.txt
   fi
   
   # if bioc tagged, rm prefix
@@ -28,14 +28,15 @@ for p in $pkg_to_build ; do
 
   R CMD check ${pkg}_*.tar.gz --no-manual
   if [ $? -ne 0 ]; then
-    echo "ERROR: R CMD check "$pkg
+    echo $pkg"  ERROR: R CMD check." >> summary.txt
     exit 1
   else
-    echo $pkg"---------- check OK.----------"
+    echo $pkg"  check OK."  >> summary.txt
   fi
   
   # include other checks, size, tarball, etc...
   
-  # change name to repo docker-bioconductor-validator
-  
- done
+done
+ 
+echo "Summary:"
+cat summary.txt
