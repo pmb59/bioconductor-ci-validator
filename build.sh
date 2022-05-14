@@ -12,7 +12,7 @@ for p in $pkg_to_build ; do
   
   #echo $pkg
 
-  Rscript --vanilla install_dependencies.r $pkg  # 2>&1 >/dev/null
+  Rscript --vanilla install_dependencies.r $pkg 2>&1 >/dev/null
 
   R CMD build $pkg --no-manual --no-build-vignettes 
   if [ $? -ne 0 ]; then
