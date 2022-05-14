@@ -8,6 +8,7 @@ if (!require("remotes")) install.packages("remotes")
 
 #if (!require("devtools")) install.packages("devtools")
 if (!require("tinytex")) install.packages("tinytex")
+library("tinytex")
 tinytex::install_tinytex()  # install TinyTeX
 
 
