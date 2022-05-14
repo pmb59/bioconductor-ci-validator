@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pkg_to_build = $( cat packages )
+pkg_to_build=$( cat packages )
 
-for p in $pkg_to_build; do
+for p in $pkg_to_build ; do
 
   echo "Buil and check package: "$p
 
