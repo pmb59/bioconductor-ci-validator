@@ -10,9 +10,9 @@ jobs:
           name: check installation
           command: R --version
       - run:
-          name: Install texlive
-          command: 'apt update && apt install texlive texlive-xetex texlive-fonts-extra texlive-latex-extra'
+          name: print installed packages
+          command: R -e 'ip = as.data.frame(installed.packages()[,c(1,3:4)]); ip = ip[is.na(ip$Priority),1:2,drop=FALSE]; ip'
       - run:
           name: build and check Bioconductor packages
-          no_output_timeout: 20m
+          no_output_timeout: 10m
           command: bash build.sh
