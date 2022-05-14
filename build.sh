@@ -8,7 +8,7 @@ for p in $pkg_to_build ; do
 
   git clone $p
   
-  pkg = $( awk -F/ '{print $NF}' <<< $p )
+  pkg=$( awk -F/ '{print $NF}' <<< $p )
   
   echo $pkg
 
