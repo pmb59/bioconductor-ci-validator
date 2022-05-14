@@ -21,8 +21,12 @@ for p in $pkg_to_build ; do
   else
     echo $pkg" build OK.----------"
   fi
+  
+  # if bioc tagged, rm prefix
+  prefix="bioconductor-"
+  pkg=$( echo "$pkg" | sed -e "s/^$prefix//" )
 
-  R CMD check *${pkg}_*.tar.gz --no-manual
+  R CMD check ${pkg}_*.tar.gz --no-manual
   if [ $? -ne 0 ]; then
     echo "ERROR: R CMD check "$pkg
     exit 1
