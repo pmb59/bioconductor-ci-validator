@@ -10,5 +10,5 @@ jobs:
           name: check installation
           command: R --version
       - run:
-          name: build and check ExpressionAtlas
-          command: bash build_ExpressionAtlas.sh
+          name: build and check Bioconductor packages
+          command: bash build.sh
