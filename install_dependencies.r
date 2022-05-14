@@ -13,7 +13,7 @@ if (!require("remotes")) install.packages("remotes")
 #if (!require("rmarkdown")) install.packages("rmarkdown")
 
 library(remotes)
-install_deps(paste0('./',args[1]), dependencies=TRUE, quiet=TRUE) 
+install_deps(paste0('./',args[1]), dependencies=TRUE, quiet=FALSE) 
 
 #install.packages('tinytex')
 #tinytex::install_tinytex()  # install TinyTeX
