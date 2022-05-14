@@ -7,13 +7,10 @@ if (length(args)!=1) {
 if (!require("remotes")) install.packages("remotes")
 
 #if (!require("devtools")) install.packages("devtools")
+if (!require("tinytex")) install.packages("tinytex")
+tinytex::install_tinytex()  # install TinyTeX
 
-#if (!require("knitr")) install.packages("knitr")
-#if (!require("testthat")) install.packages("testthat")
-#if (!require("rmarkdown")) install.packages("rmarkdown")
 
 library(remotes)
 install_deps(paste0('./',args[1]), dependencies=TRUE, quiet=FALSE) 
 
-#install.packages('tinytex')
-#tinytex::install_tinytex()  # install TinyTeX
