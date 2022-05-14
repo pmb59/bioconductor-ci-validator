@@ -14,7 +14,7 @@ for p in $pkg_to_build ; do
 
   Rscript --vanilla install_dependencies.r $pkg  # 2>&1 >/dev/null
 
-  R CMD build $pkg
+  R CMD build $pkg --no-manual --no-build-vignettes 
   if [ $? -ne 0 ]; then
     echo $pkg"  ERROR: Failed R CMD build." >> summary.txt
     exit 1
@@ -26,7 +26,7 @@ for p in $pkg_to_build ; do
   prefix="bioconductor-"
   pkg=$( echo "$pkg" | sed -e "s/^$prefix//" )
 
-  R CMD check ${pkg}_*.tar.gz --no-manual
+  R CMD check ${pkg}_*.tar.gz --no-manual --no-build-vignettes 
   if [ $? -ne 0 ]; then
     echo $pkg"  ERROR: R CMD check." >> summary.txt
     exit 1
