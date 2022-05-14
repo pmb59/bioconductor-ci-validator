@@ -13,9 +13,6 @@ jobs:
           name: print installed packages
           command: R -e 'ip = as.data.frame(installed.packages()[,c(1,3:4)]); ip = ip[is.na(ip$Priority),1:2,drop=FALSE]; ip'
       - run:
-          name: print installed packages
-          command: docker run bioconductor/bioconductor_docker:devel R -e 'ip = as.data.frame(installed.packages()[,c(1,3:4)]); ip = ip[is.na(ip$Priority),1:2,drop=FALSE]; ip'
-      - run:
           name: build and check Bioconductor packages
-          no_output_timeout: 10m
+          no_output_timeout: 50m
           command: bash build.sh
