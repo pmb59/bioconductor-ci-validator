@@ -15,22 +15,27 @@ for p in $pkg_to_build ; do
   pkgsed=$( echo "$pkg" | sed -e "s/^$prefix//" )
 
   Rscript --vanilla install_dependencies.r $pkg 2>&1 >/dev/null
-
-  R CMD build $pkg --no-manual --no-build-vignettes 
   if [ $? -ne 0 ]; then
-    echo $pkgsed"  ERROR: Failed R CMD build." >> summary.txt
+    echo $pkgsed" ERROR: Failed installing dependencies." >> summary.txt
     exit 1
   else
-    echo $pkgsed"  build OK." >> summary.txt
+    echo $pkgsed" OK: installing dependencies." >> summary.txt
   fi
   
+  R CMD build $pkg --no-manual --no-build-vignettes 
+  if [ $? -ne 0 ]; then
+    echo $pkgsed" ERROR: Failed R CMD build." >> summary.txt
+    exit 1
+  else
+    echo $pkgsed" OK: build." >> summary.txt
+  fi
 
   R CMD check ${pkgsed}_*.tar.gz --no-manual --no-build-vignettes 
   if [ $? -ne 0 ]; then
-    echo $pkgsed"  ERROR: R CMD check." >> summary.txt
+    echo $pkgsed" ERROR: R CMD check." >> summary.txt
     exit 1
   else
-    echo $pkgsed"  check OK."  >> summary.txt
+    echo $pkgsed" OK check."  >> summary.txt
   fi
   
   # include other checks, size, tarball, etc...
