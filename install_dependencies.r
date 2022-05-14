@@ -9,5 +9,5 @@ if (!require("remotes")) install.packages("remotes")
 library(remotes)
 install_deps('./bioconductor-ExpressionAtlas', dependencies=TRUE, quiet=TRUE) 
 
-install.packages('tinytex')
-tinytex::install_tinytex()  # install TinyTeX
+#install.packages('tinytex')
+#tinytex::install_tinytex()  # install TinyTeX
