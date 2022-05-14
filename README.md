@@ -1,3 +1,3 @@
 # Docker container access to Bioconductor 
 
-Release 3.15
+Build and check with lastest Bioc version a list of packages cloned from GitHub.
