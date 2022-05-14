@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-R CMD check ExpressionAtlas_*.tar.gz
+R CMD check ExpressionAtlas_*.tar.gz --no-manual
 if [ $? -ne 0 ]; then
   echo "ERROR: R CMD check"
   exit 1
