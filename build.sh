@@ -44,3 +44,9 @@ done
  
 echo "Summary:"
 cat summary.txt
+
+R CMD INSTALL ExpressionAtlas*.tar.gz
+
+R -e 'library(testthat);library(ExpressionAtlas); geod11175 <- getAtlasExperiment("E-GEOD-11175"); print(names(geod11175))'
+
+
