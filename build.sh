@@ -47,6 +47,6 @@ cat summary.txt
 
 R CMD INSTALL ExpressionAtlas*.tar.gz
 
-R -e 'library(testthat);library(ExpressionAtlas); geod11175 <- getAtlasExperiment("E-GEOD-11175"); print(names(geod11175))'
+R -e 'library(testthat);library(ExpressionAtlas); geod11175 <- getAtlasExperiment("E-GEOD-11175"); print(expect_identical( names( geod11175 ), "A-AFFY-126" ))'
 
 
