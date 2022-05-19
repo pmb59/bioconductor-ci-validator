@@ -27,7 +27,7 @@ for p in $pkg_to_build ; do
     echo $pkgsed" ERROR: Failed R CMD build." >> summary.txt
     exit 1
   else
-    echo $pkgsed" OK: build." >> summary.txt
+    echo $pkgsed" R CMD build OK." >> summary.txt
   fi
 
   R CMD check ${pkgsed}_*.tar.gz --no-manual --no-build-vignettes 
@@ -35,7 +35,7 @@ for p in $pkg_to_build ; do
     echo $pkgsed" ERROR: R CMD check." >> summary.txt
     exit 1
   else
-    echo $pkgsed" OK check."  >> summary.txt
+    echo $pkgsed" R CMD check OK."  >> summary.txt
   fi
   
   # include other checks, size, tarball, etc...
