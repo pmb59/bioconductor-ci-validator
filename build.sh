@@ -46,6 +46,7 @@ for p in $pkg_to_build ; do
   
 done
  
+# improve the summary (show all WARNINGS, ERRORS, NOTES) 
 echo "Summary:"
 cat summary.txt
 
