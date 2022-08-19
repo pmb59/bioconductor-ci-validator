@@ -7,4 +7,12 @@ The motivation is to use a CI tool and Docker Bioc-devel to check the validity o
 
 ### Prerequisites
 
-A CircleCI account.
+Set a CircleCI account.
+
+###  Use 
+
+Fork the repo, and edit the packages list
+```
+https://github.com/ebi-gene-expression-group/bioconductor-ExpressionAtlas
+https://github.com/pmb59/fCCAC
+```
