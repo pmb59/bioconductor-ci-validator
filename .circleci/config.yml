@@ -44,9 +44,11 @@ commands:
       - run:
           name: add version file to repo
           command: |
+            cd bioconductor-ci-validator
             git status
-            git branch
-            
+            git add VERSION
+            commit -m "new VERSION file"
+            git push -u ${CIRCLE_PROJECT_USERNAME}
 
 jobs:  
   build:
