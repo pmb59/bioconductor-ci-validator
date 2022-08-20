@@ -39,10 +39,10 @@ commands:
             cat << parameters.version_file_path >>
 
   add_versionfile:
-    description: add verssion. file to repo
+    description: add version file to repo
     steps:
       - run:
-          name: print version
+          name: add version file to repo
           command: |
             git status
             git branch
