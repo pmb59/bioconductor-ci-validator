@@ -22,19 +22,14 @@ commands:
             echo "VERSION: $VERSION"
             
 
-jobs:
-  print-version:
-    docker:
-      - image: circleci/python:3
-    steps:
-      - define_version
-      - print_version
-      
+jobs:  
   build:
     working_directory: /bioconductor-ci-validator
     docker:
       - image: bioconductor/bioconductor_docker:devel
     steps:
+      - define_version
+      - print_version
       - checkout
       - run:
           name: check r installation
