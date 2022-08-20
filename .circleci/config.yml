@@ -2,20 +2,22 @@ version: 2.1
 
 commands:
   define_version:
-    description: define env var VERSION based on an optional git tag or the git branch name
+    description: Define env var VERSION based on an optional git tag or the git branch name
     steps:
       - run:
-          name: define VERSION environment variable
+          name: Define VERSION environment variable
           command: |
             CIRCLE_BRANCH_CLEAN=$(echo ${CIRCLE_BRANCH} | sed "s;/;-;ig")
+
             if [ -n "${CIRCLE_TAG}" ]; then VERSION=${CIRCLE_TAG}; else VERSION="${CIRCLE_BRANCH_CLEAN}@${CIRCLE_SHA1:0:6}"; fi
+
             echo "export VERSION=$VERSION" >> $BASH_ENV
- 
+
   print_version:
-    description: print the current VERSION
+    description: Print the current VERSION
     steps:
       - run:
-          name: print version
+          name: Print version
           command: |
             echo "VERSION: $VERSION"
             
@@ -30,7 +32,6 @@ commands:
       - run:
           name: Create version file
           command: |
-            rm -f << parameters.version_file_path >>
             echo $VERSION > << parameters.version_file_path >>
       - run:
           name: Check version file
@@ -46,22 +47,22 @@ commands:
             git status
             git branch
             
-            
+
 jobs:  
   build:
     working_directory: /bioconductor-ci-validator
     docker:
       - image: bioconductor/bioconductor_docker:devel
-     steps:
-       - define_version
-       - print_version
-       - checkout
-       - create_version_file
-       - add_versionfile
-       - run:
+    steps:
+      - define_version
+      - print_version
+      - checkout
+      - create_version_file
+      - add_versionfile
+      - run:
           name: check r installation
           command: R --version
-       - run:
+      - run:
           name: build and check bioconductor packages
           no_output_timeout: 50m
           command: bash build.sh
