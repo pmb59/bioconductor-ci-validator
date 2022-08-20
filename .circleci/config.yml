@@ -47,8 +47,8 @@ jobs:
     steps:
       - define_version
       - print_version
-      - create_version_file
       - checkout
+      - create_version_file
       - run:
           name: check r installation
           command: R --version
