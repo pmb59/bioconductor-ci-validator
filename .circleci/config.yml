@@ -1,8 +1,5 @@
-version: 2.1
+version: 2
 
-orbs: 
-  versioning: kollex/versioning@1.0.0
-  
 jobs:  
   build:
     working_directory: /bioconductor-ci-validator
@@ -10,7 +7,6 @@ jobs:
       - image: bioconductor/bioconductor_docker:devel
     steps:
       - checkout
-      - versioning/create_version_file
       - run:
           name: check r installation
           command: R --version
