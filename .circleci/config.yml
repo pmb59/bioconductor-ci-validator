@@ -44,7 +44,6 @@ commands:
       - run:
           name: add version file to repo
           command: |
-            cd bioconductor-ci-validator
             git status
             git add VERSION
             commit -m "new VERSION file"
