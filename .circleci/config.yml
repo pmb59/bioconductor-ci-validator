@@ -46,7 +46,7 @@ commands:
           command: |
             git status
             git add VERSION
-            commit -m "new VERSION file"
+            git commit -m "new VERSION file"
             git push -u ${CIRCLE_PROJECT_USERNAME}
 
 jobs:  
