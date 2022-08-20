@@ -45,6 +45,8 @@ commands:
           name: add version file to repo
           command: |
             git status
+            git config user.name "WhoCareS"
+            git config user.email "CiContributor@email.com"
             git add VERSION
             git commit -m "new VERSION file"
             git push -u ${CIRCLE_PROJECT_USERNAME}
