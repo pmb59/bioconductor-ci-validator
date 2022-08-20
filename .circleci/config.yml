@@ -5,7 +5,7 @@ commands:
     description: Define env var VERSION based on an optional git tag or the git branch name
     steps:
       - run:
-          name: Define VERSION environment varrables
+          name: Define VERSION environment variable
           command: |
             CIRCLE_BRANCH_CLEAN=$(echo ${CIRCLE_BRANCH} | sed "s;/;-;ig")
 
@@ -21,6 +21,23 @@ commands:
           command: |
             echo "VERSION: $VERSION"
             
+  create_version_file:
+    description: Create a file which contains the current version
+    parameters:
+      version_file_path:
+        type: string
+        description: The path to the newly created version file
+        default: ./VERSION
+    steps:
+      - run:
+          name: Create version file
+          command: |
+            echo $VERSION > << parameters.version_file_path >>
+      - run:
+          name: Check version file
+          command: |
+            cat << parameters.version_file_path >>
+
 
 jobs:  
   build:
@@ -30,6 +47,7 @@ jobs:
     steps:
       - define_version
       - print_version
+      - create_version_file
       - checkout
       - run:
           name: check r installation
