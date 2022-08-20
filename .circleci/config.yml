@@ -23,6 +23,13 @@ commands:
             
 
 jobs:
+  print-version:
+    docker:
+      - image: circleci/python:3
+    steps:
+      - define_version
+      - print_version
+      
   build:
     working_directory: /bioconductor-ci-validator
     docker:
