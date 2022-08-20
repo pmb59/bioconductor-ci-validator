@@ -9,6 +9,7 @@ jobs:
     docker:
       - image: bioconductor/bioconductor_docker:devel
     steps:
+      - versioning/create-version-file
       - checkout
       - run:
           name: check r installation
