@@ -1,4 +1,27 @@
-version: 2
+version: 2.1
+
+commands:
+  define_version:
+    description: Define env var VERSION based on an optional git tag or the git branch name
+    steps:
+      - run:
+          name: Define VERSION environment varrables
+          command: |
+            CIRCLE_BRANCH_CLEAN=$(echo ${CIRCLE_BRANCH} | sed "s;/;-;ig")
+
+            if [ -n "${CIRCLE_TAG}" ]; then VERSION=${CIRCLE_TAG}; else VERSION="${CIRCLE_BRANCH_CLEAN}@${CIRCLE_SHA1:0:6}"; fi
+
+            echo "export VERSION=$VERSION" >> $BASH_ENV
+
+  print_version:
+    description: Print the current VERSION
+    steps:
+      - run:
+          name: Print version
+          command: |
+            echo "VERSION: $VERSION"
+            
+
 jobs:
   build:
     working_directory: /bioconductor-ci-validator
