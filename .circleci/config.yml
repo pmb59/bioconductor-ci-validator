@@ -27,7 +27,7 @@ commands:
       version_file_path:
         type: string
         description: The path to the newly created version file
-        default: ./VERSION
+        default: /bioconductor-ci-validator/VERSION
     steps:
       - run:
           name: Create version file
