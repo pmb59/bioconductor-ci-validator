@@ -1,4 +1,5 @@
 version: 2.1
+
 commands:
   define_version:
     description: define env var VERSION based on an optional git tag or the git branch name
@@ -9,6 +10,7 @@ commands:
             CIRCLE_BRANCH_CLEAN=$(echo ${CIRCLE_BRANCH} | sed "s;/;-;ig")
             if [ -n "${CIRCLE_TAG}" ]; then VERSION=${CIRCLE_TAG}; else VERSION="${CIRCLE_BRANCH_CLEAN}@${CIRCLE_SHA1:0:6}"; fi
             echo "export VERSION=$VERSION" >> $BASH_ENV
+ 
   print_version:
     description: print the current VERSION
     steps:
@@ -18,21 +20,33 @@ commands:
             echo "VERSION: $VERSION"
             
   create_version_file:
-    description: create a file which contains the current version
+    description: Create a file which contains the current version
     parameters:
       version_file_path:
         type: string
-        description: path to the newly created version file
+        description: The path to the newly created version file
         default: /bioconductor-ci-validator/VERSION
     steps:
       - run:
           name: Create version file
           command: |
+            rm -f << parameters.version_file_path >>
             echo $VERSION > << parameters.version_file_path >>
       - run:
           name: Check version file
           command: |
             cat << parameters.version_file_path >>
+
+  add_versionfile:
+    description: add verssion. file to repo
+    steps:
+      - run:
+          name: print version
+          command: |
+            git status
+            git branch
+            
+            
 jobs:  
   build:
     working_directory: /bioconductor-ci-validator
@@ -43,10 +57,11 @@ jobs:
        - print_version
        - checkout
        - create_version_file
+       - add_versionfile
        - run:
-           name: check r installation
-           command: R --version
-      - run:
+          name: check r installation
+          command: R --version
+       - run:
           name: build and check bioconductor packages
           no_output_timeout: 50m
           command: bash build.sh
